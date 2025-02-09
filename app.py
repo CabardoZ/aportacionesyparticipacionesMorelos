@@ -10,15 +10,16 @@ Original file is located at
 
 
 import pandas as pd
-file_name = "PROYECTO IV DATA RECURSOS FEDERALES.xlsx"
-
-
 import dash
 from dash import dcc, html
 import plotly.graph_objects as go
 import plotly.express as px
 import pandas as pd
 from dash.dependencies import Input, Output
+
+file_name = "PROYECTO IV DATA RECURSOS FEDERALES.xlsx"
+
+df = pd.read_excel('PROYECTO IV DATA RECURSOS FEDERALES.xlsx')
 
 df_aportaciones = pd.read_excel(file_name,sheet_name='Aportaciones y recursos federal')
 df_participaciones = pd.read_excel(file_name,sheet_name='Participaciones')
@@ -83,6 +84,7 @@ else:
 
 # Inicializar la app
 app = dash.Dash(__name__)
+server = app.server
 
 # Colores definidos
 primary_color = "#fba725"  # Color principal (amarillo)
@@ -572,7 +574,7 @@ def actualizar_treemap(año_seleccionado):
     )
     return fig_treemap
 
-server = app.server
+
 
 
 if __name__ == "__main__":
